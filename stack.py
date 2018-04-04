@@ -89,7 +89,7 @@ def matches(open, close):
 #print parChecker2('{{([][])}()}')
 #print parChecker2('[{()]')
 
-#除2 十进制转2进制
+# 除2 十进制转2进制
 
 def divideBy2(decNumber):
     remstack = Stack()
@@ -106,28 +106,29 @@ def divideBy2(decNumber):
 
 #print divideBy2(42)
 
-#十进制转8,16进制
+# 十进制转8,16进制
 
-def baseConverter(decNumber,base):
+
+def baseConverter(decNumber, base):
     digits = "0123456789ABCDEF"
 
     remstack = Stack()
 
-    while decNumber >0 :
+    while decNumber > 0:
         rem = decNumber % base
         remstack.push(rem)
         decNumber = decNumber / base
 
     newString = ""
     while not remstack.isEmpty():
-        newString = newString +digits[remstack.pop()]
+        newString = newString + digits[remstack.pop()]
     return newString
 #print baseConverter(25,2)
 #print baseConverter(233,16)
 #print baseConverter(25,16)
 
-#中缀前缀和后缀表达式
-#中缀         前缀          后缀:
-#A+B          +AB            AB+
-#A+B*C       +A*BC          ABC*+
+# 中缀前缀和后缀表达式
+# 中缀         前缀          后缀:
+# A+B          +AB            AB+
+# A+B*C       +A*BC          ABC*+
 #(A+B)*C     *+ABC          AB+C*

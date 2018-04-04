@@ -1,3 +1,6 @@
+# coding:utf-8
+# 队列（单向）
+
 
 class Queue:
     def __init__(self):
@@ -6,8 +9,8 @@ class Queue:
     def isEmpty(self):
         return self.items == []
 
-    def enqueue(self,item):
-        self.items.insert(0,item)
+    def enqueue(self, item):
+        self.items.insert(0, item)
 
     def dequeue(self):
         return self.items.pop()
@@ -17,6 +20,7 @@ class Queue:
 
     def item(self):
         return self.items
+
 
 """
 q = Queue()
@@ -28,7 +32,10 @@ print q.dequeue()
 print q.size()
 """
 
-def hotPotato(namelist,num):
+# 烫手山芋
+
+
+def hotPotato(namelist, num):
     simqueue = Queue()
     for name in namelist:
         simqueue.enqueue(name)
@@ -40,12 +47,7 @@ def hotPotato(namelist,num):
             #print simqueue.item()
         simqueue.dequeue()
     return simqueue.dequeue()
-namelist =["Bill","David","Susan","Jane","Kent","Brad"]
-#print hotPotato(namelist,7)
 
-k =3
-nums=[1,2,3,4,5,6,7]
-for i in range(k):
-    nums.insert(0, nums[len(nums) - 1])
-    nums.pop()
-print nums
+
+namelist = ["Bill", "David", "Susan", "Jane", "Kent", "Brad"]
+#print hotPotato(namelist,7)
