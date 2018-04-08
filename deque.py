@@ -43,8 +43,3 @@ print palchecker('asdsa')
 print palchecker("radar")
 print palchecker("lalksjfklasdjf")
 #s = "a,b. d"
-s ='abcba'
-l =list(s)
-print l
-print l.reverse()
-print l
