@@ -31,19 +31,19 @@ def parChecker1(symbolString):
 
     while index < len(symbolString) and balanced:
         symbol = symbolString[index]
-        #print len(symbolString)
-       # print index
-        #print symbol
+        # print len(symbolString)
+        # print index
+        # print symbol
         if symbol == '(':
             s.push(symbol)
-            #print "="
+            # print "="
         else:
             if s.isEmpty():
                 balanced = False
-                #print "null"
+                # print "null"
             else:
                 s.pop()
-                #print "pop"
+                # print "pop"
         index = index + 1
 
     if balanced and s.isEmpty():
@@ -52,10 +52,9 @@ def parChecker1(symbolString):
         return False
 
 
-#print parChecker1('((()))')
-#print parChecker1('(()')
+# print parChecker1('((()))')
+# print parChecker1('(()')
 # 符号匹配
-
 
 def parChecker2(symbolString):
     s = Stack()
@@ -86,8 +85,8 @@ def matches(open, close):
     return opens.index(open) == closers.index(close)
 
 
-#print parChecker2('{{([][])}()}')
-#print parChecker2('[{()]')
+# print parChecker2('{{([][])}()}')
+# print parChecker2('[{()]')
 
 # 除2 十进制转2进制
 
@@ -96,15 +95,18 @@ def divideBy2(decNumber):
 
     while decNumber > 0:
         rem = decNumber % 2
+        # print rem
         remstack.push(rem)
         decNumber = decNumber / 2
 
     binString = ""
     while not remstack.isEmpty():
         binString = binString + str(remstack.pop())
+        # print binString
     return binString
 
-#print divideBy2(42)
+
+# print divideBy2(42)
 
 # 十进制转8,16进制
 
@@ -116,6 +118,7 @@ def baseConverter(decNumber, base):
 
     while decNumber > 0:
         rem = decNumber % base
+        # print rem
         remstack.push(rem)
         decNumber = decNumber / base
 
@@ -123,12 +126,12 @@ def baseConverter(decNumber, base):
     while not remstack.isEmpty():
         newString = newString + digits[remstack.pop()]
     return newString
-#print baseConverter(25,2)
-#print baseConverter(233,16)
-#print baseConverter(25,16)
+# print baseConverter(25,2)
+# print baseConverter(233,16)
+# print baseConverter(25,16)
 
 # 中缀前缀和后缀表达式
 # 中缀         前缀          后缀:
 # A+B          +AB            AB+
 # A+B*C       +A*BC          ABC*+
-#(A+B)*C     *+ABC          AB+C*
+# (A+B)*C     *+ABC          AB+C*

@@ -1,8 +1,9 @@
-#coding:utf-8
-#无序列表：链表
+# coding:utf-8
+# 无序列表：链表
+
 
 class Node:
-    def __init__(self,inindata):
+    def __init__(self, inindata):
         self.data = inindata
         self.next = None
 
@@ -12,14 +13,16 @@ class Node:
     def getNext(self):
         return self.next
 
-    def setData(self,newdata):
+    def setData(self, newdata):
         self.data = newdata
 
-    def setNext(self,newnext):
+    def setNext(self, newnext):
         self.next = newnext
 
-#temp =Node(93)
-#print temp.getData()
+
+# temp =Node(93)
+# print temp.getData()
+
 
 class UnorderedList:
 
@@ -27,9 +30,9 @@ class UnorderedList:
         self.head = None
 
     def isEmpty(self):
-        return self.head == None
+        return self.head is None
 
-    def add(self,item):
+    def add(self, item):
         temp = Node(item)
         temp.setNext(self.head)
         self.head = temp
@@ -37,25 +40,25 @@ class UnorderedList:
     def size(self):
         current = self.head
         count = 0
-        while current != None:
+        while current is not None:
             count = count + 1
             current = current.getNext()
 
         return count
 
-    def search(self,item):
+    def search(self, item):
         current = self.head
         found = False
-        while current != None and not found:
+        while current is not None and not found:
             if current.getData() == item:
                 found = True
             else:
-                current= current.getNext()
-        #print current.getData()
+                current = current.getNext()
+        # print current.getData()
         return found
 
-    def remove(self,item):
-        current =self.head
+    def remove(self, item):
+        current = self.head
         previous = None
         found = False
         while not found:
@@ -64,70 +67,76 @@ class UnorderedList:
             else:
                 previous = current
                 current = current.getNext()
-        if previous == None:
+        if previous is None:
             self.head = current.getNext()
         else:
             previous.setNext(current.getNext())
+
 
 mylist = UnorderedList()
 mylist.add(31)
 mylist.add(77)
 mylist.add(17)
 
-#print mylist.head.getNext().getData()
-#mylist.head = mylist.head.getNext()
-#print mylist.head.getNext().getData()
-#mylist.head = mylist.head.getNext()
-#print mylist.head.getNext()
-#print mylist.search(17)
 
-#有序列表
+# print mylist.head.getNext().getData()
+# mylist.head = mylist.head.getNext()
+# print mylist.head.getNext().getData()
+# mylist.head = mylist.head.getNext()
+# print mylist.head.getNext()
+# print mylist.search(17)
+
+# 有序列表
 
 class OrderedList:
     def __init__(self):
         self.head = None
 
+
 def isEmpty(self):
-    return self.head == None
+    return self.head is None
+
 
 def size(self):
     current = self.head
     count = 0
-    while current != None:
+    while current is not None:
         count = count + 1
         current = current.getNext()
     return count
 
-def search(self,item):
+
+def search(self, item):
     current = self.head
     found = False
-    stop =  False
+    stop = False
 
-    while current != None and not found and not stop:
+    while current is not None and not found and not stop:
         if current.getData() == item:
             found = True
         else:
             if current.getData() > item:
                 stop = True
             else:
-                current =  current.getNext()
+                current = current.getNext()
 
     return found
 
-def add(self,item):
+
+def add(self, item):
     current = self.head
     previous = None
-    stop =  False
+    stop = False
 
-    while current != None and not stop:
+    while current is not None and not stop:
         if current.getData() > item:
-            stop =  True
+            stop = True
         else:
             previous = current
             current = current.getNext()
 
     temp = Node(item)
-    if previous == None:
+    if previous is None:
         temp.setNext(self.head)
         self.head = temp
     else:

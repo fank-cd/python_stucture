@@ -39,15 +39,15 @@ def hotPotato(namelist, num):
     simqueue = Queue()
     for name in namelist:
         simqueue.enqueue(name)
-        #print simqueue.item()
+        # print simqueue.item()
     while simqueue.size() > 1:
-        #print simqueue.item()
+        # print simqueue.item()
         for i in range(num):
             simqueue.enqueue(simqueue.dequeue())
-            #print simqueue.item()
+            # print simqueue.item()
         simqueue.dequeue()
     return simqueue.dequeue()
 
 
 namelist = ["Bill", "David", "Susan", "Jane", "Kent", "Brad"]
-#print hotPotato(namelist,7)
+# print hotPotato(namelist,7)

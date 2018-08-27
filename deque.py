@@ -1,5 +1,7 @@
-#coding:utf-8
-#deque ：双端队列
+# coding:utf-8
+# deque ：双端队列
+
+
 class Deque:
     def __init__(self):
         self.items = []
@@ -7,11 +9,11 @@ class Deque:
     def isEmpty(self):
         return self.items == []
 
-    def addFront(self,item):
+    def addFront(self, item):
         self.items.append((item))
 
-    def addRear(self,item):
-        self.items.insert(0,item)
+    def addRear(self, item):
+        self.items.insert(0, item)
 
     def removeFront(self):
         return self.items.pop()
@@ -22,7 +24,8 @@ class Deque:
     def size(self):
         return len(self.items)
 
-#回文检查
+# 回文检查
+
 
 def palchecker(aString):
     chardeque = Deque()
@@ -35,11 +38,12 @@ def palchecker(aString):
         #print '1'
         first = chardeque.removeFront()
         last = chardeque.removeRear()
-        if first != last :
+        if first != last:
             stillEqual = False
     return stillEqual
+
 
 print palchecker('asdsa')
 print palchecker("radar")
 print palchecker("lalksjfklasdjf")
-#s = "a,b. d"
+# s = "a,b. d"
