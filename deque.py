@@ -1,6 +1,6 @@
 # coding:utf-8
 # deque ：双端队列
-
+import  Queue
 
 class Deque:
     def __init__(self):
