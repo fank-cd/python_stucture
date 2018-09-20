@@ -1,4 +1,8 @@
 #coding:utf-8
+from stack import Stack
+
+rStack = Stack()
+
 
 def toStr(n,base):
     """
@@ -7,11 +11,21 @@ def toStr(n,base):
     :param base: 要转换的进制
     :return: 返回一个
     """
+
     convertString = "0123456789ABCDEF"
 
-    if  n < base:
-        return convertString[n]
-    else:
-        return toStr(n/base,base) + convertString[ n%base]
+    while n > 0:
 
-print toStr(10,2)
+        if n < base:
+            rStack.push(convertString[n])
+        else:
+            rStack.push(convertString[n % base])
+        n = n // base
+    res = ""
+    while not rStack.isEmpty():
+        res = res + str(rStack.pop())
+    return res
+
+
+print(toStr(1453, 16))
+print(toStr(10, 2))
