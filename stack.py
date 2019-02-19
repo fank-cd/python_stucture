@@ -16,10 +16,37 @@ class Stack:
         return self.items.pop()
 
     def peek(self):
-        return self.items[len(self.items) - 1]
+        if not self.isEmpty():
+            return self.items[len(self.items) - 1]
 
     def size(self):
         return len(self.items)
+# - O(1) 的复杂度实现一个 栈 的出栈入栈和返回 max、min 值的操作
+
+class Stack(object):
+    def __init__(self):
+        self.items = []
+        self.min_items = []
+        self.max_items = []
+
+    def push(self,item):
+        self.items.append(item)
+
+        if self.min_items == [] or item <= self.min_items[::-1]:
+            self.min_items.append(item)
+
+    def pop(self):
+        if self.min_items[::-1] == self.items[::-1]:
+            self.items.pop()
+            self.min_items.pop()
+        else:
+            self.items.pop()
+
+
+    def peek_min(self):
+        print self.min_items[::-1]
+        return self.min_items[::-1]
+
 
 # 简单括号匹配
 
