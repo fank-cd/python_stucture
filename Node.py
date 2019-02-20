@@ -1,144 +1,103 @@
 # coding:utf-8
-# 无序列表：链表
 
 
-class Node:
-    def __init__(self, inindata):
-        self.data = inindata
+class Node(object):
+    def __init__(self, value):
+        self.value = value
         self.next = None
 
-    def getData(self):
-        return self.data
 
-    def getNext(self):
-        return self.next
+class LinkedListOneway(object):
+    def __init__(self, node=None):
+        self.__head = node
 
-    def setData(self, newdata):
-        self.data = newdata
-
-    def setNext(self, newnext):
-        self.next = newnext
-
-
-# temp =Node(93)
-# print temp.getData()
-
-
-class UnorderedList:
-
-    def __init__(self):
-        self.head = None
-
-    def isEmpty(self):
-        return self.head is None
-
-    def add(self, item):
-        temp = Node(item)
-        temp.setNext(self.head)
-        self.head = temp
-
-    def size(self):
-        current = self.head
+    def __len__(self):
+        cur = self.__head
         count = 0
-        while current is not None:
-            count = count + 1
-            current = current.getNext()
+
+        while cur:
+            count += 1
+            cur = cur.next
 
         return count
 
-    def search(self, item):
-        current = self.head
-        found = False
-        while current is not None and not found:
-            if current.getData() == item:
-                found = True
-            else:
-                current = current.getNext()
-        # print current.getData()
-        return found
+    def is_empty(self):
+        return self.__head == None
 
-    def remove(self, item):
-        current = self.head
-        previous = None
-        found = False
-        while not found:
-            if current.getData() == item:
-                found = True
-            else:
-                previous = current
-                current = current.getNext()
-        if previous is None:
-            self.head = current.getNext()
+    def add(self, value):
+        # 插在头部
+        node = Node(value)
+        node.next = self.__head
+        self.__head = node
+
+    def append(self, value):
+        # 插在尾部
+        node = Node(value)
+        cur = self.__head
+        if self.is_empty():
+            self.__head = node
         else:
-            previous.setNext(current.getNext())
+            while cur.next:
+                cur = cur.next
+            cur.next = node
 
+    def insert(self, pos, value):
 
-mylist = UnorderedList()
-mylist.add(31)
-mylist.add(77)
-mylist.add(17)
-
-
-# print mylist.head.getNext().getData()
-# mylist.head = mylist.head.getNext()
-# print mylist.head.getNext().getData()
-# mylist.head = mylist.head.getNext()
-# print mylist.head.getNext()
-# print mylist.search(17)
-
-# 有序列表
-
-class OrderedList:
-    def __init__(self):
-        self.head = None
-
-
-def isEmpty(self):
-    return self.head is None
-
-
-def size(self):
-    current = self.head
-    count = 0
-    while current is not None:
-        count = count + 1
-        current = current.getNext()
-    return count
-
-
-def search(self, item):
-    current = self.head
-    found = False
-    stop = False
-
-    while current is not None and not found and not stop:
-        if current.getData() == item:
-            found = True
+        if pos <= 0:  # 插入位置小于0，则直接插在头部
+            self.add(value)
+        elif pos > len(self) - 1:  # 插入位置大于长度，则直接插在尾部
+            self.append(value)
         else:
-            if current.getData() > item:
-                stop = True
+            node = Node(value)
+            prior = self.__head
+            count = 0
+
+            while count < (pos-1):
+                prior = prior.next
+                count += 1
+
+            node.next = prior.next
+            prior.next = node
+
+    def remove(self, value):
+        cur = self.__head
+        prior = None
+        while cur:
+            if value == cur.value:
+                if cur == self.__head:
+                    self.__head = cur.next
+
+                else:
+                    prior.next = cur.next
+                break
             else:
-                current = current.getNext()
+                prior = cur
+                cur = cur.next
 
-    return found
+    def search(self, value):
+        cur = self.__head
+        while cur:
+            if value == cur.value:
+                return True
+            cur = cur.next
+
+        return False
+
+    def traverse(self):
+        cur = self.__head
+        while cur:
+            print cur.value
+            cur = cur.next
 
 
-def add(self, item):
-    current = self.head
-    previous = None
-    stop = False
+l = LinkedListOneway()
 
-    while current is not None and not stop:
-        if current.getData() > item:
-            stop = True
-        else:
-            previous = current
-            current = current.getNext()
+l.add(2)
+l.add(4)
+l.append(3)
+# print l.search(2)
+l.insert(0, 5)
+l.insert(4, 5)
 
-    temp = Node(item)
-    if previous is None:
-        temp.setNext(self.head)
-        self.head = temp
-    else:
-        temp.setNext(current)
-        previous.setNext(temp)
+l.remove(2)
+l.traverse()
