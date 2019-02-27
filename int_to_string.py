@@ -1,5 +1,5 @@
 #coding:utf-8
-from stack import Stack
+from structure.stack import Stack
 
 rStack = Stack()
 
