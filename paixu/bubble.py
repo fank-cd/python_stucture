@@ -21,6 +21,8 @@ def bubble_sort(li):
 
 
 # 短冒泡(加了一个标志位)
+
+
 def bubble_sort_opt(li):
     if len(li) >= 2:
         for j in range(len(li)-1):
