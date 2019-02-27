@@ -126,79 +126,100 @@ class BiTree1(object):  # 树 一颗完全二叉树（意思是一直从左到�
 # 2. 从根结点开始，如果当前结点左子树存在，则打印结点，并将该结点入栈。让当前结点指向左子树，继续步骤2直至当前结点左子树不存在。
 # 3. 将当结点打印出来，如果当前结点的右子树存在，当前结点指向右子树，继续步骤2。否则进行步骤4.
 # 4. 如果栈为空则遍历结束。若非空，从栈里面pop一个节点，从当前结点指向该结点的右子树。如果右子树存在继续步骤2，不存在继续步骤4直至结束。
-
-
-
-# 用字典构造二叉树
-"""
-dict_tree = { 
-    "element": 0, 
-    "left": { 
-            "element": 1, 
-            "left": { 
-                "element": 3, 
-                "left": 6, 
-                "right": 7, 
-                    } 
-            }, 
-    "right": { 
-            "element": 2, 
-            "left": 4, 
-            "right": { 
-                "element": 5, 
-                "left": 8, 
-                "right": 9,
-                        },
-            }, 
-}
-
-"""
-class B_Tree2(object):  # 树
-    def __init__(self, node=None):
-        self.root = node
-
-    def add(self, item=None):
-        node = Node(data=item)
-
-        if not self.root or self.root.data is None: # 我怀疑这个条件是一回事呢
-            self.root = node
-
+    def pre_traversal(self):
+        if self.root is None:
+            return None
         else:
-            my_queue = []
-            my_queue.append(self.root)
-            while True:
-                cur_node = my_queue.pop(0)
-                if cur_node.data is None:
+            node_stack = list()
+            output_list = list()
+            node = self.root
+
+            while node is not None or len(node_stack):
+                if node is None:
+                    node = node_stack.pop().right
                     continue
-                if not cur_node.l_child:
-                    cur_node.l_child = node
-                    return
-                elif not cur_node.r_child:
-                    cur_node.r_child = node
-                    return
-                else:
-                    my_queue.append(cur_node.l_child)
-                    my_queue.append(cur_node.r_child)
 
+                while node.left is not None:
+                    node_stack.append(node)
+                    output_list.append(node.get_element())
+                    node = node.left
 
-    # 层次遍历
-    def floor_travel(self):
-        if not self.root or self.root.data is None:
-            return []
+                output_list.append(node.get_element())
+                node = node.right
+        return output_list
 
+# 中序
+
+    def in_traversal(self):
+        if self.root is None:
+            return None
         else:
-            my_queue = []
-            re_queue = []
+            node_stack = list()
+            output_list = list()
+            node = self.root
 
-            my_queue.append(self.root)
+            while node is not None or len(node_stack):
+                if node is None:
+                    node = node_stack.pop()
+                    output_list.append(node.get_element())
+                    node = node.right
 
-            while my_queue:
-                cur_node = my_queue.pop(0)
-                re_queue.append(cur_node)
-                if cur_node.l_child:
-                    my_queue.append(cur_node.l_child)
-                if cur_node.r_child:
-                    my_queue.append(cur_node.r_child)
+                while node.left is not None:
+                    node_stack.append(node)
+                    node = node.left
 
-            return re_queue
+                output_list.append(node.get_element())
+                node = node.right
+
+        return output_list
+
+
+# 后序
+    def post_traversal(self):
+        if self.root is None:
+            return None
+        else:
+            node_stack = list()
+            output_list = list()
+            node = self.root
+
+            while node is not None or len(node_stack):
+                if node is None:
+                    node = node_stack.pop().left
+
+                while node.right is not None:
+                    node_stack.append(node)
+                    output_list.append(node.get_element())
+                    node = node.right
+                output_list.append(node.get_element())
+                node = node.left
+
+        return output_list[::-1]
+
+# 更简单的递归写法
+
+# 依次为前中后遍历
+    def preOrder(self, BinaryTreeNode):
+        if BinaryTreeNode is None:
+            return
+        # 先打印根结点，再打印左结点，后打印右结点
+        print(BinaryTreeNode.data)
+        self.preOrder(BinaryTreeNode.left)
+        self.preOrder(BinaryTreeNode.right)
+
+    def inOrder(self, BinaryTreeNode):
+        if BinaryTreeNode is None:
+            return
+        # 先打印左结点，再打印根结点，后打印右结点
+        self.inOrder(BinaryTreeNode.left)
+        print(BinaryTreeNode.data)
+        self.inOrder(BinaryTreeNode.right)
+
+    def postOrder(self, BinaryTreeNode):
+        if BinaryTreeNode is None:
+            return
+        # 先打印左结点，再打印右结点，后打印根结点
+        self.postOrder(BinaryTreeNode.left)
+        self.postOrder(BinaryTreeNode.right)
+        print(BinaryTreeNode.data)
 
