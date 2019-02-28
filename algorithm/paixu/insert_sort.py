@@ -2,7 +2,8 @@
 
 # O(n^2)
 
-
+# i 范围 0- (len-1)
+# j 范围 0- (i-1) j永远比i小1
 def insertSort(relist):
     len_ = len(relist)
     for i in range(1,len_):
@@ -14,3 +15,4 @@ def insertSort(relist):
     return relist
 
 print insertSort([1,5,2,6,9,3])
+# 插入排序在最好情况下，需要比较n-1次，无需交换元素，时间复杂度为O(n);在最坏情况下，时间复杂度依然为O(n2)

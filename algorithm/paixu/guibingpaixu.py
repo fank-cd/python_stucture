@@ -17,6 +17,6 @@ def mergeSort(relist):
     mid_index = len(relist)/2
     left = mergeSort(relist[:mid_index])  # 递归拆解的过程
     right = mergeSort(relist[mid_index:])
-    return merge(left,right)  # 合并的过程
+    return merge(left, right)  # 合并的过程
 
 print mergeSort([1,5,2,6,9,3])
